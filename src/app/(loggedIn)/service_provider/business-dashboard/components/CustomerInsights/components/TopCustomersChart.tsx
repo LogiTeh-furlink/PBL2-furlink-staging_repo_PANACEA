@@ -60,8 +60,9 @@ export default function TopCustomersChart({ customers }: TopCustomersChartProps)
         grid: { display: false },
         ticks: {
           font: { size: 11 },
-          callback: function(val: any) {
-            const label = this.getLabelForValue(val);
+          callback: function(val: any): string {
+            // Get label safely from chartData labels array using the index value
+            const label = chartData.labels[val] || '';
             return label.length > 15 ? label.substring(0, 15) + '...' : label;
           }
         },
